@@ -1,0 +1,80 @@
+﻿@model CarModel
+
+@* Generated from Custom Template. *@
+@* Model namespace using directive should be added to _ViewImports.cshtml. *@
+
+@{
+    var containerDivClass = "container";
+}
+@{
+    ViewData["Title"] = "Delete TypeCar";
+}
+
+<div class="@containerDivClass">
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <hr />
+</div>
+
+@if (Model is not null)
+{
+    <div class="@containerDivClass">
+        @if (TempData["Message"] is not null)
+        {
+            <p class="text-danger">
+                @TempData["Message"]
+            </p>
+        }
+
+        <h3 class="text-warning">Are you sure you want to delete this record?</h3>
+        <p class="text-muted">This action cannot be undone.</p>
+        <hr />
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">Brand:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.Brand)
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">Is Damaged:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.IsDamaged)
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">Model Year:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.modelYear)
+            </div>
+        </div>
+
+       
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">TypeCar ID:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.CarTypeId)
+            </div>
+        </div>
+
+        <hr />
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="record.Id" />
+            <div class="text-end">
+                <input type="submit" value="Yes, Delete" class="btn btn-danger" />
+                &nbsp;&nbsp;
+                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="@containerDivClass">
+        <h3 class="text-danger">The record could not be found.</h3>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+}

@@ -1,0 +1,74 @@
+﻿@model CarModel
+
+@* Generated from Custom Template. *@
+@* Model namespace using directive should be added to _ViewImports.cshtml. *@
+
+@{
+    var containerDivClass = "container";
+}
+@{
+    ViewData["Title"] = "TypeCar Details";
+}
+
+<div class="@containerDivClass">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+</div>
+
+@if (Model is not null)
+{
+    <div class="@containerDivClass">
+        @if (TempData["Message"] is not null)
+        {
+            <p class="text-danger">
+                @TempData["Message"]
+            </p>
+        }
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">Brand:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.Brand)
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">Is Damaged:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.IsDamaged)
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">Model Year:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.modelYear)
+            </div>
+        </div>
+
+       
+
+        <div class="row mb-3">
+            <label class="col-2 fw-bold">TypeCar ID:</label>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.record.CarTypeId)
+            </div>
+        </div>
+
+        <hr />
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.record.Id" class="btn btn-primary">Edit</a>
+            &nbsp;&nbsp;
+            <a asp-action="Delete" asp-route-id="@Model.record.Id" class="btn btn-danger">Delete</a>
+            &nbsp;&nbsp;
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="@containerDivClass">
+        <h3 class="text-danger">The record could not be found.</h3>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+}
